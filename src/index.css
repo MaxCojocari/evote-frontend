@@ -1,3 +1,24 @@
+html,
+#root,
 body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Inter, sans-serif;
+}
+
+body,
+#root,
+.hide-scroll {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+#root {
+  margin: 0;
+}
+
+p {
   margin: 0;
 }
