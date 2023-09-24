@@ -1,6 +1,7 @@
 .rightSection {
   flex: 1;
   overflow: hidden;
+  min-height: 1000px;
 }
 
 .img {
