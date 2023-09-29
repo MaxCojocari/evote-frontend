@@ -1,4 +1,4 @@
-import BaseForm from "../BaseForm";
+import SignUpInput from "../SignUpInput";
 import classes from "./styles.module.css";
 
 export default function SignUpForm() {
@@ -9,7 +9,7 @@ export default function SignUpForm() {
           <p>Înregistrare</p>
         </div>
 
-        <BaseForm />
+        <SignUpInput />
 
         <div className={classes.row}>
           <p>

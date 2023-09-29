@@ -1,5 +1,5 @@
-import eyeOff from "../../../../assets/eye-off.svg";
-import eyeShow from "../../../../assets/eye-show.svg";
+import eyeOff from "../../assets/eye-off.svg";
+import eyeShow from "../../assets/eye-show.svg";
 import classes from "./styles.module.css";
 import { useState } from "react";
 import * as yup from "yup";
@@ -25,7 +25,7 @@ const validationSchema = yup
   })
   .required();
 
-export default function BaseForm() {
+export default function SignUpInput() {
   const [passwordShow, setPasswordShow] = useState(false);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");

@@ -1,4 +1,4 @@
-import Logo from "../../../Logo";
+import Logo from "../Logo";
 import classes from "./styles.module.css";
 
 export default function Header() {
