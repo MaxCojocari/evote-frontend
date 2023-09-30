@@ -1,6 +1,6 @@
 import classes from "./styles.module.css";
 import SupportText from "../SupportText";
-import ValidationCode from "../ValidationCode";
+import ValidateCode from "../ValidateCode";
 import RowText from "../RowText";
 
 export default function ReceiveTokenForm({
@@ -15,7 +15,7 @@ export default function ReceiveTokenForm({
       <div className={classes.container}>
         <div className={classes.receiveTokenContent}>
           <SupportText content={supportText} />
-          <ValidationCode />
+          <ValidateCode buttonName={buttonName} />
           <RowText
             baseText={baseText}
             hrefText={hrefText}

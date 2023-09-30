@@ -1,9 +1,8 @@
 import Logo from "../Logo";
-import classes from "./styles.module.css";
 
-export default function Header() {
+export default function Header({ header }: any) {
   return (
-    <div className={classes.header}>
+    <div className={header}>
       <Logo />
     </div>
   );

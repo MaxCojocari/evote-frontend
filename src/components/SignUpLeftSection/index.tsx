@@ -6,7 +6,7 @@ import classes from "./styles.module.css";
 export default function SignUpLeftSection() {
   return (
     <div className={classes.leftSection}>
-      <Header />
+      <Header header={classes.header}/>
       <SignUpForm
         supportText={"Înregistrare"}
         buttonName={"Primește token-ul personal"}

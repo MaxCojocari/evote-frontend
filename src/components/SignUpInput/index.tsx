@@ -5,6 +5,7 @@ import { useState } from "react";
 import * as yup from "yup";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 
 const phoneRegExp = /^0\d{8}$/;
 const idnpRegExp = /^\d{13}$/;
@@ -31,6 +32,7 @@ export default function SignUpInput() {
   const [surname, setSurname] = useState("");
   const [idnp, setIdnp] = useState("");
   const [phoneNr, setPhoneNr] = useState("");
+  const navigate = useNavigate();
   const methods = useForm({
     resolver: yupResolver(validationSchema),
   });
@@ -41,13 +43,15 @@ export default function SignUpInput() {
   } = methods;
 
   function signUpHandler(event: any) {
-    // event.preventDefault();
     console.log({
       name,
       surname,
       idnp,
       phoneNr,
     });
+    setTimeout(() => {
+      navigate(`/signup/receive-token`);
+    }, 1000);
   }
 
   return (

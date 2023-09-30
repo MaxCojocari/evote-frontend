@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import classes from "./styles.module.css";
 
 export default function RowText({ baseText, hrefText, redirectUrl }: any) {
@@ -5,7 +6,7 @@ export default function RowText({ baseText, hrefText, redirectUrl }: any) {
     <div className={classes.row}>
       <p>
         {baseText}{" "}
-        <a href={redirectUrl} style={{ textDecoration: "none" }}>
+        <Link to={redirectUrl} style={{ textDecoration: "none" }}>
           <span
             style={{
               color: "var(--primary-700, #6941C6)",
@@ -20,7 +21,7 @@ export default function RowText({ baseText, hrefText, redirectUrl }: any) {
           >
             {hrefText}
           </span>
-        </a>
+        </Link>
       </p>
     </div>
   );
