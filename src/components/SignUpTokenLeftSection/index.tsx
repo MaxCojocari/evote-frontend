@@ -1,13 +1,13 @@
-import Footer from "../Footer";
-import Header from "../Header/Header";
-import SignUpForm from "../SignUpForm";
 import classes from "./styles.module.css";
+import Header from "../Header/Header";
+import ReceiveTokenForm from "../ReceiveTokenForm";
+import Footer from "../Footer";
 
-export default function SignUpLeftSection() {
+export default function SignUpTokenLeftSection() {
   return (
     <div className={classes.leftSection}>
       <Header />
-      <SignUpForm
+      <ReceiveTokenForm
         supportText={"Înregistrare"}
         buttonName={"Primește token-ul personal"}
         baseText={"Deja ai token-ul personal?"}

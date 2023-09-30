@@ -1,5 +1,4 @@
 .container {
-  /* margin-top: 80px; */
   display: flex;
   padding: 0px 32px;
   flex-direction: column;
@@ -7,11 +6,9 @@
   align-self: stretch;
 }
 
-.content {
+.receiveTokenContent {
   display: flex;
-  width: 360px;
   flex-direction: column;
   align-items: center;
   gap: 32px;
-  /* background-color: lightblue; */
 }
