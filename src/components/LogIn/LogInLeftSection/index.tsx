@@ -14,6 +14,7 @@ export default function LogInLeftSection() {
         baseText={"Nu ai token?"}
         hrefText={"Înregistrează-te"}
         redirectUrl={`${APP_URL}/signup`}
+        loginRedirectRelativeUrl={`/login/confirm`}
       />
       <Footer />
     </div>

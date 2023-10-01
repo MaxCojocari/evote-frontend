@@ -11,7 +11,7 @@ export default function App() {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/signup/receive-token" element={<SignUpToken />} />
       <Route path="/login" element={<LogIn />} />
-      <Route path="/login/receive-token" element={<LogInToken />} />
+      <Route path="/login/confirm" element={<LogInToken />} />
     </Routes>
   );
 }

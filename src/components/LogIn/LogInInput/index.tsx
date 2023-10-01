@@ -17,7 +17,7 @@ const validationSchema = yup
   })
   .required();
 
-export default function LogInInput() {
+export default function LogInInput({ loginRedirectRelativeUrl }: any) {
   const [token, setToken] = useState("");
   const navigate = useNavigate();
   const methods = useForm({
@@ -32,7 +32,8 @@ export default function LogInInput() {
   function signUpHandler(event: any) {
     console.log("Token: ", token);
     setTimeout(() => {
-      navigate(`/login/receive-token`);
+      //   navigate(`/login/receive-token`);
+      navigate(loginRedirectRelativeUrl);
     }, 1000);
   }
 
