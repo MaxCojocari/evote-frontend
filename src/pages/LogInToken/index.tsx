@@ -5,7 +5,7 @@ import SignUpTokenLeftSection from "../../components/LogIn/LogInTokenLeftSection
 
 export default function LogInToken() {
   return (
-    <div className={classes.signupReceiveToken}>
+    <div className={classes.loginReceiveToken}>
       <SignUpTokenLeftSection />
       <AuthRightSection img={logInImg} />
     </div>

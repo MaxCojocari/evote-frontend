@@ -5,7 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 
-const tokenRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{12}$/;
+const tokenRegExp = /^[a-zA-Z0-9]{12}$/;
 
 const validationSchema = yup
   .object()

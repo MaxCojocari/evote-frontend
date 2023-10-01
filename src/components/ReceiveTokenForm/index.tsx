@@ -9,13 +9,17 @@ export default function ReceiveTokenForm({
   baseText,
   hrefText,
   redirectUrl,
+  buttonRedirectRelativeUrl,
 }: any) {
   return (
     <>
       <div className={classes.container}>
         <div className={classes.receiveTokenContent}>
           <SupportText content={supportText} />
-          <ValidateCode buttonName={buttonName} />
+          <ValidateCode
+            buttonName={buttonName}
+            buttonRedirectRelativeUrl={buttonRedirectRelativeUrl}
+          />
           <RowText
             baseText={baseText}
             hrefText={hrefText}

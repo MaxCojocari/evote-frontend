@@ -14,6 +14,7 @@ export default function SignUpTokenLeftSection() {
         baseText={"Deja ai token-ul personal?"}
         hrefText={"Logează-te"}
         redirectUrl={`${APP_URL}/login`}
+        buttonRedirectRelativeUrl={"/login"}
       />
       <Footer />
     </div>

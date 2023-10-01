@@ -9,11 +9,12 @@ export default function LogInTokenLeftSection() {
     <div className={classes.leftSection}>
       <Header header={classes.header} />
       <ReceiveTokenForm
-        supportText={"Înregistrare"}
-        buttonName={"Primește token-ul personal"}
-        baseText={"Deja ai token-ul personal?"}
-        hrefText={"Logează-te"}
-        redirectUrl={`${APP_URL}/login`}
+        supportText={"Logare"}
+        buttonName={"Finalizează logarea"}
+        baseText={"Nu ai access la nr. de telefon?"}
+        hrefText={"Schimbă token-ul"}
+        redirectUrl={`${APP_URL}/signup`}
+        buttonRedirectRelativeUrl={"/"}
       />
       <Footer />
     </div>
