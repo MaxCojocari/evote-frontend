@@ -1,10 +1,10 @@
 import classes from "./styles.module.css";
-import Header from "../Header/Header";
-import ReceiveTokenForm from "../ReceiveTokenForm";
-import Footer from "../Footer";
-import { APP_URL } from "../../config/config";
+import Header from "../../Header/Header";
+import ReceiveTokenForm from "../../ReceiveTokenForm";
+import Footer from "../../Footer";
+import { APP_URL } from "../../../config/config";
 
-export default function SignUpTokenLeftSection() {
+export default function LogInTokenLeftSection() {
   return (
     <div className={classes.leftSection}>
       <Header header={classes.header} />

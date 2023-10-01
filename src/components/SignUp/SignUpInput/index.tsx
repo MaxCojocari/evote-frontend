@@ -1,5 +1,5 @@
-import eyeOff from "../../assets/eye-off.svg";
-import eyeShow from "../../assets/eye-show.svg";
+import eyeOff from "../../../assets/eye-off.svg";
+import eyeShow from "../../../assets/eye-show.svg";
 import classes from "./styles.module.css";
 import { useState } from "react";
 import * as yup from "yup";

@@ -1,13 +1,13 @@
 import AuthRightSection from "../../components/AuthRightSection";
 import classes from "./styles.module.css";
-import signUpImg from "../../assets/signup-img.png";
-import SignUpTokenLeftSection from "../../components/SignUp/SignUpTokenLeftSection";
+import logInImg from "../../assets/login-img.jpeg";
+import SignUpTokenLeftSection from "../../components/LogIn/LogInTokenLeftSection";
 
-export default function SignUpToken() {
+export default function LogInToken() {
   return (
     <div className={classes.signupReceiveToken}>
       <SignUpTokenLeftSection />
-      <AuthRightSection img={signUpImg} />
+      <AuthRightSection img={logInImg} />
     </div>
   );
 }

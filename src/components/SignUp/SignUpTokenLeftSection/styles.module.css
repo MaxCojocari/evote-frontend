@@ -1,0 +1,17 @@
+.leftSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.header {
+  display: flex;
+  height: 32px;
+  padding: 32px;
+  align-items: flex-start;
+  align-self: stretch;
+  /* margin-bottom: 30px; */
+}

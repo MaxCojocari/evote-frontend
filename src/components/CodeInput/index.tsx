@@ -3,17 +3,11 @@ import AuthCode from "react-auth-code-input";
 import "./index.css";
 
 export default function CodeInput({ handleOnChange }: any) {
-  //   const [result, setResult] = useState("");
   const telNr = "078999905";
 
   function getDottedTelNr(telNr: string) {
     return telNr.slice(0, 2) + "****" + telNr.slice(6, 10);
   }
-
-  //   const handleOnChange = (res: string) => {
-  //     setResult(res);
-  //     console.log("Token: ", result);
-  //   };
 
   return (
     <div className={classes.inputWithLabel}>
@@ -24,6 +18,7 @@ export default function CodeInput({ handleOnChange }: any) {
         onChange={handleOnChange}
         containerClassName="container"
         inputClassName="input"
+        allowedCharacters={"numeric"}
       />
     </div>
   );

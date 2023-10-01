@@ -11,10 +11,12 @@ export default function ValidateCode({ buttonName }: any) {
   };
 
   const confirmToken = () => {
-    console.log("Send Token: ", result);
-    setTimeout(() => {
-      navigate(`/signin`);
-    }, 1000);
+    if (result.length === 6) {
+      console.log("Send Token: ", result);
+      setTimeout(() => {
+        navigate(`/login`);
+      }, 1000);
+    }
   };
 
   return (
