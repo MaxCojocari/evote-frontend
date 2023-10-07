@@ -14,6 +14,7 @@ export default function SignUpTokenLeftSection() {
         hrefText={"Logează-te"}
         redirectUrl={`/login`}
         buttonRedirectRelativeUrl={"/login"}
+        isReceiveToken={true}
       />
       <Footer />
     </div>

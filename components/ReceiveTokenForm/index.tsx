@@ -10,6 +10,7 @@ export default function ReceiveTokenForm({
   hrefText,
   redirectUrl,
   buttonRedirectRelativeUrl,
+  isReceiveToken,
 }: any) {
   return (
     <>
@@ -19,6 +20,7 @@ export default function ReceiveTokenForm({
           <ValidateCode
             buttonName={buttonName}
             buttonRedirectRelativeUrl={buttonRedirectRelativeUrl}
+            isReceiveToken={isReceiveToken}
           />
           <RowText
             baseText={baseText}

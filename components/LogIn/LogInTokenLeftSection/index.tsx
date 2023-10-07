@@ -13,7 +13,8 @@ export default function LogInTokenLeftSection() {
         baseText={"Nu ai access la nr. de telefon?"}
         hrefText={"Schimbă token-ul"}
         redirectUrl={`/signup`}
-        buttonRedirectRelativeUrl={"/home"}
+        buttonRedirectRelativeUrl={"/"}
+        isReceiveToken={false}
       />
       <Footer />
     </div>

@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
+import { verifyToken } from "../../../services/auth.service";
 
 const tokenRegExp = /^[a-zA-Z0-9]{12}$/;
 
@@ -27,13 +28,24 @@ export default function LogInInput({ loginRedirectRelativeUrl }: any) {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = methods;
 
-  function signUpHandler(event: any) {
+  async function logInHandler(event: any) {
     console.log("Token: ", token);
+
+    // const res = await verifyToken({ token });
+    // if (res?.status === 200) {
+    //   router.push(loginRedirectRelativeUrl);
+    // } else {
+    //   setError("token", {
+    //     type: 'manual',
+    //     message: 'Token-ul este incorect!',
+    //   });
+    // }
+
     setTimeout(() => {
-      //   navigate(`/login/receive-token`);
       router.push(loginRedirectRelativeUrl);
     }, 1000);
   }
@@ -59,7 +71,7 @@ export default function LogInInput({ loginRedirectRelativeUrl }: any) {
           <div className={classes.actions}>
             <button
               className={classes.logInButton}
-              onClick={handleSubmit(signUpHandler)}
+              onClick={handleSubmit(logInHandler)}
             >
               Verifică token-ul
             </button>

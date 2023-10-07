@@ -2,7 +2,7 @@ import axios from "axios";
 import { API_URL } from "../config/config";
 import { axiosAuthHeader } from "../config/auth.config";
 
-export const generateSecret = async () => {
+export const generateOtp = async () => {
   return axios
     .post(`${API_URL}/2fa/generate`)
     .then((res) => {
@@ -14,6 +14,15 @@ export const generateSecret = async () => {
 export const twoFactorAuthAuthenticate = async (data: Object) => {
   return axios
     .post(`${API_URL}/2fa/authenticate`, { ...data }, await axiosAuthHeader())
+    .then((res) => {
+      return res;
+    })
+    .catch((e) => console.log(e));
+};
+
+export const generateToken = async () => {
+  return axios
+    .post(`${API_URL}/auth/generate-token`, await axiosAuthHeader())
     .then((res) => {
       return res;
     })

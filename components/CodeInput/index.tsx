@@ -1,6 +1,8 @@
 import classes from "./styles.module.css";
 import AuthCode from "react-auth-code-input";
 import "./index.css";
+import { useEffect } from "react";
+import { generateSecret } from "../../services/auth.service";
 
 export default function CodeInput({ handleOnChange }: any) {
   const telNr = "078999905";
