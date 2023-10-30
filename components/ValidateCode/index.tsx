@@ -22,14 +22,10 @@ export default function ValidateCode({
     setResult(res);
   };
 
-  //   useEffect(() => {
-  //     generateOtp();
-  //   }, []);
-
   const confirmToken = async () => {
     if (result.length === 6) {
       console.log("Send OTP: ", { twoFactorAuthenticationCode: result });
-      console.log("Gen token", isReceiveToken);
+      //   console.log("Gen token", isReceiveToken);
 
       //   const res = await twoFactorAuthAuthenticate({
       //     twoFactorAuthenticationCode: result,

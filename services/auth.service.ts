@@ -4,7 +4,7 @@ import { axiosAuthHeader } from "../config/auth.config";
 
 export const generateOtp = async () => {
   return axios
-    .post(`${API_URL}/2fa/generate`)
+    .post(`${API_URL}/2fa/generateOtp`)
     .then((res) => {
       return res;
     })
