@@ -1,6 +1,7 @@
 .main {
-  background-color: greenyellow;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* display: flex;
   width: 100%;
-  align-items: flex-start;
+  align-items: flex-start; */
 }

@@ -6,7 +6,7 @@ import img2 from "../../public/balti.jpeg";
 export default function ElectionContainer() {
   return (
     <div className={classes.main}>
-      <ElectionBox electionName={"Alegeri prezidentiale"} img={img1} />
+      <ElectionBox electionName={"Alegeri prezidențiale"} img={img1} />
       <ElectionBox electionName={"Alegeri municipale"} img={img2} />
       {/* <ElectionBox electionName={"Alegeri prezidentiale"} img={img1} />
       <ElectionBox electionName={"Alegeri municipale"} img={img2} /> */}
