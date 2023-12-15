@@ -1,15 +1,9 @@
 "use client";
-import { useEffect } from "react";
 import { VotingStep, WizardStepStatus } from "../../types/types";
 import WizardStep from "../WizardStep";
 import classes from "./styles.module.css";
 
 export default function Wizard({ votingState }: any) {
-  useEffect(() => {
-    console.log("voting state: ", votingState);
-    console.log("===: ", votingState === VotingStep.CHOOSE_CAMPAIGN);
-  }, []);
-
   return (
     <>
       {votingState === VotingStep.CHOOSE_CAMPAIGN && (

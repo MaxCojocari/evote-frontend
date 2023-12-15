@@ -1,15 +1,19 @@
 import ElectionBox from "../ElectionBox";
 import classes from "./styles.module.css";
-import img1 from "../../public/chisinau.jpeg";
-import img2 from "../../public/balti.jpeg";
 
-export default function ElectionContainer() {
+export default function ElectionContainer({ elections }: any) {
+  // getCurrentElections -> "Alegeri prezidențiale", "Alegeri municipale"...
   return (
     <div className={classes.main}>
-      <ElectionBox electionName={"Alegeri prezidențiale"} img={img1} />
-      <ElectionBox electionName={"Alegeri municipale"} img={img2} />
-      {/* <ElectionBox electionName={"Alegeri prezidentiale"} img={img1} />
-      <ElectionBox electionName={"Alegeri municipale"} img={img2} /> */}
+      {elections.map(
+        (object: { description: string; img: string }, index: any) => (
+          <ElectionBox
+            key={index}
+            boxName={object.description}
+            img={`/${object.img}`}
+          />
+        )
+      )}
     </div>
   );
 }

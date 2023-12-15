@@ -1,14 +1,21 @@
 import BallotHeader from "../BallotHeader";
+import ChoicesContainer from "../ChoicesContainer";
 import ElectionContainer from "../ElectionContainer";
 import Wizard from "../Wizard";
 import classes from "./styles.module.css";
 
-export default function Ballot({ votingState }: any) {
+export default function Ballot({
+  ballotName,
+  votingState,
+  electionsOrCandidates,
+  choicePage,
+}: any) {
   return (
     <div className={classes.main}>
-      <BallotHeader text={"Votare"} />
+      <BallotHeader text={ballotName} />
       <Wizard votingState={votingState} />
-      <ElectionContainer />
+      {choicePage && <ChoicesContainer choices={electionsOrCandidates} />}
+      {!choicePage && <ElectionContainer elections={electionsOrCandidates} />}
     </div>
   );
 }

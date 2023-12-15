@@ -11,3 +11,16 @@ export enum WizardStepStatus {
   DONE,
   SUCCESS,
 }
+
+export type Choice = {
+  id: string;
+  description: string;
+  img: string;
+};
+
+export type Election = {
+  id: string;
+  description: string;
+  img: string;
+  choices: Choice[];
+};
