@@ -3,16 +3,19 @@ import Image from "next/image";
 import classes from "./styles.module.css";
 import choiceCircle from "../../public/choiceCircle.svg";
 import choicePendingCircle from "../../public/circle_pending_voted.svg";
-import { useState } from "react";
+import { Choice } from "../../types/types";
 
-export default function ChoiceBox({ choice, isSelected, handleSelected }: any) {
-  const [selected, setSelected] = useState(false);
-  const handleChoiceSelection = () => {
-    setSelected(!selected);
-  };
-
+export default function ChoiceBox({
+  choice,
+  isSelected,
+  handleSelected,
+}: {
+  choice: Choice;
+  isSelected: boolean;
+  handleSelected: (id: string) => void;
+}) {
   return (
-    <div className={classes.main} onClick={() => handleChoiceSelection()}>
+    <div className={classes.main} onClick={() => handleSelected(choice.id)}>
       <Image
         className={classes.img}
         src={`/${choice.img}`}
@@ -24,7 +27,7 @@ export default function ChoiceBox({ choice, isSelected, handleSelected }: any) {
       <div className={classes.text}>
         {(choice.description as string).toUpperCase()}
       </div>
-      {selected && (
+      {isSelected ? (
         <Image
           className={classes.circle}
           src={choicePendingCircle}
@@ -33,8 +36,7 @@ export default function ChoiceBox({ choice, isSelected, handleSelected }: any) {
           height={0}
           sizes="100vw"
         />
-      )}
-      {!selected && (
+      ) : (
         <Image
           className={classes.circle}
           src={choiceCircle}

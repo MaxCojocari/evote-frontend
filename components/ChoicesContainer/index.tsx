@@ -1,36 +1,66 @@
 "use client";
-import Link from "next/link";
 import ChoiceBox from "../ChoiceBox";
 import classes from "./styles.module.css";
 import { Choice } from "../../types/types";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+
+type StateTracker = { choice: Choice; active: boolean };
 
 export default function ChoicesContainer({ choices }: any) {
+  const router = useRouter();
   const searchParams = useSearchParams();
-  const [localChoices, setLocalChoices] = useState([{}]);
+  const [localChoicesState, setLocalChoicesState] = useState<StateTracker[]>(
+    choices.map((choice: Choice) => ({
+      choice,
+      active: false,
+    }))
+  );
+
+  const handleChoiceSelection = (id: string) => {
+    const currentChoiceState = [...localChoicesState];
+    setLocalChoicesState(
+      currentChoiceState.map((state: StateTracker) =>
+        state.choice.id === id
+          ? ({ choice: state.choice, active: true } as any)
+          : ({ choice: state.choice, active: false } as any)
+      )
+    );
+    console.log(localChoicesState);
+  };
+
+  const handleVoteClick = () => {
+    const electionId = searchParams.get("election_id");
+    const choice = localChoicesState.filter(
+      (item: StateTracker) => item.active
+    )[0];
+    if (choice) {
+      router.push(
+        `/voting/confirm?election_id=${electionId}&choice_id=${choice.choice.id}`
+      );
+    }
+  };
 
   useEffect(() => {
-    const localChoices = choices.map((choice: Choice) => {
-      choice;
-      isSelected: false;
-    });
-    console.log(localChoices);
-
-    setLocalChoices(localChoices);
+    setLocalChoicesState(
+      choices.map((choice: Choice) => ({
+        choice,
+        active: false,
+      }))
+    );
+    console.log(localChoicesState);
   }, [choices]);
-
-  const handleChoiceSelection = () => {};
 
   return (
     <>
       <div className={classes.main}>
-        {choices.map((choice: Choice, index: any) => (
+        {localChoicesState.map((item: StateTracker, index: number) => (
           <ChoiceBox
             key={index}
-            choice={choice}
-            isSelected={false}
-            handleChoiceSelection={handleChoiceSelection}
+            choice={item.choice}
+            isSelected={item.active}
+            handleSelected={handleChoiceSelection}
           />
         ))}
       </div>
@@ -41,22 +71,12 @@ export default function ChoicesContainer({ choices }: any) {
           justifyContent: "center",
         }}
       >
-        <Link
-          href={{
-            pathname: "/voting/confirm",
-            query: {
-              election_id: "ab0ded4b-9151-46b1-85a4-0317ca2b407f",
-              candidate_id: "2",
-            },
-          }}
-          style={{
-            textDecoration: "none",
-          }}
+        <button
+          className={classes.voteButton}
+          onClick={() => handleVoteClick()}
         >
-          <button className={classes.voteButton}>
-            <div className={classes.buttonText}>Votează</div>
-          </button>
-        </Link>
+          <div className={classes.buttonText}>Votează</div>
+        </button>
       </div>
     </>
   );
