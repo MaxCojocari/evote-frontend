@@ -1,5 +1,4 @@
 "use client";
-import Ballot from "../../../components/Ballot";
 import Sidebar from "../../../components/Sidebar";
 import { Election, VotingStep } from "../../../types/types";
 import { useRouter, useSearchParams } from "next/navigation";

@@ -1,11 +1,11 @@
-import { useRouter, useSearchParams } from "next/navigation";
-import BallotHeader from "../BallotHeader";
-import Wizard from "../Wizard";
-import classes from "./styles.module.css";
 import Image from "next/image";
-import { elections } from "../../mockData";
+import { useRouter, useSearchParams } from "next/navigation";
+import Wizard from "../Wizard";
 import { Choice } from "../../types/types";
 import { useEffect, useState } from "react";
+import classes from "./styles.module.css";
+import BallotHeader from "../BallotHeader";
+import { elections } from "../../mockData";
 
 export default function BallotFinalChoice({ ballotName, votingState }: any) {
   const router = useRouter();
@@ -28,8 +28,7 @@ export default function BallotFinalChoice({ ballotName, votingState }: any) {
 
   const handleConfirmClick = () => {
     if (candidate) {
-      router.push(`/voting/done`);
-      console.log(candidate);
+      router.push(`/voting/done?election_id=${electionId}`);
     }
   };
 
