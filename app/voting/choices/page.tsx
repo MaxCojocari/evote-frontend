@@ -15,7 +15,7 @@ export default function VotingChoice() {
   const router = useRouter();
 
   const getElection = (id: string): Election => {
-    return elections.filter((ballot) => (ballot.id = id))[0];
+    return elections.filter((ballot) => ballot.id === id)[0];
   };
 
   useEffect(() => {

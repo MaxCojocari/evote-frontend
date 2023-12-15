@@ -1,0 +1,142 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  width: 1260px;
+  min-height: 814px;
+  padding-top: 32px;
+  gap: 91px;
+  flex-shrink: 0;
+  border-radius: 40px 0px 0px 40px;
+  background: #fff;
+}
+
+.warningBlock {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* background-color: red; */
+  width: 598.258px;
+  height: 448.693px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 566.709px;
+  height: 88.804px;
+  flex-shrink: 0;
+}
+
+.choiceFinalCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* gap: 100px; */
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.img {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 50px;
+}
+
+.text {
+  display: flex;
+  width: 200px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #101828;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 42.5px;
+}
+
+.choiceFinalCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 100px;
+}
+
+.buttonReject {
+  display: flex;
+  padding: 11.685px 21.033px;
+  justify-content: center;
+  align-items: center;
+  gap: 9.348px;
+  flex: 1 0 0;
+  cursor: pointer;
+
+  width: 598.258px;
+  height: 52.369px;
+  flex-shrink: 0;
+
+  border-radius: 9.348px;
+  border: 1.168px solid #101828;
+  background: #fff;
+  box-shadow: 0px 1.168px 2.337px 0px rgba(16, 24, 40, 0.05);
+}
+
+.buttonReject p {
+  color: #101828;
+  font-family: Inter;
+  font-size: 18.696px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28.043px;
+}
+
+.buttonConfirm {
+  display: flex;
+  padding: 11.685px 21.033px;
+  justify-content: center;
+  align-items: center;
+  gap: 9.348px;
+  flex: 1 0 0;
+  cursor: pointer;
+
+  width: 598.258px;
+  height: 52.369px;
+  flex-shrink: 0;
+
+  border-radius: 9.348px;
+  border: 1.168px solid #7f56d9;
+  background: #7f56d9;
+  box-shadow: 0px 1.168px 2.337px 0px rgba(16, 24, 40, 0.05);
+}
+
+.buttonConfirm p {
+  color: #fff;
+  font-family: Inter;
+  font-size: 18.696px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28.043px;
+}
+
+.remark {
+  color: #101828;
+  text-align: center;
+  font-size: 23.369px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28.043px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

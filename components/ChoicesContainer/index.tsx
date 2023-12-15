@@ -27,7 +27,6 @@ export default function ChoicesContainer({ choices }: any) {
           : ({ choice: state.choice, active: false } as any)
       )
     );
-    console.log(localChoicesState);
   };
 
   const handleVoteClick = () => {
