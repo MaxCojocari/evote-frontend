@@ -8,8 +8,8 @@ export const elections = [
     choices: [
       { id: "1", description: "Helena Reeze", img: "helena_reeze.jpeg" },
       { id: "2", description: "Jessica Karter", img: "jessica_karter.jpeg" },
-        { id: "3", description: "Dan Colins", img: "dan_colins.jpeg" },
-        { id: "4", description: "John Rickman", img: "john_rickman.jpeg" },
+      { id: "3", description: "Dan Colins", img: "dan_colins.jpeg" },
+      { id: "4", description: "John Rickman", img: "john_rickman.jpeg" },
     ],
   },
   {

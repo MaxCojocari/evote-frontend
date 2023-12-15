@@ -7,15 +7,15 @@ import classes from "./styles.module.css";
 export default function Ballot({
   ballotName,
   votingState,
-  electionsOrCandidates,
+  choices,
   choicePage,
 }: any) {
   return (
     <div className={classes.main}>
       <BallotHeader text={ballotName} />
       <Wizard votingState={votingState} />
-      {choicePage && <ChoicesContainer choices={electionsOrCandidates} />}
-      {!choicePage && <ElectionContainer elections={electionsOrCandidates} />}
+      {choicePage && <ChoicesContainer choices={choices} />}
+      {!choicePage && <ElectionContainer elections={choices} />}
     </div>
   );
 }

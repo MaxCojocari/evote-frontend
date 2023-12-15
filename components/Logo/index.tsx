@@ -15,6 +15,7 @@ export default function Logo({ color }: any) {
             fontStyle: "normal",
             fontWeight: "700",
             lineHeight: "24px",
+            fontFamily: "Inter",
           }}
         >
           SwiftVote

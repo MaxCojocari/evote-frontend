@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import classes from "../styles.module.css";
 import { elections } from "../../../mockData";
 import { useEffect, useState } from "react";
+import FooterVoting from "../../../components/FooterVoting";
 
 export default function VotingChoice() {
   const [electionName, setElectionName] = useState("");
@@ -24,7 +25,6 @@ export default function VotingChoice() {
       return;
     }
     const election = getElection(id as string);
-    console.log("election: ", election);
 
     setElectionName(election.description);
     setChoices(election.choices as any);
@@ -33,12 +33,21 @@ export default function VotingChoice() {
   return (
     <div className={classes.main}>
       <Sidebar />
-      <Ballot
-        votingState={VotingStep.CHOOSE_CANDIDATE}
-        ballotName={electionName}
-        electionsOrCandidates={choices}
-        choicePage={true}
-      />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <Ballot
+          votingState={VotingStep.CHOOSE_CANDIDATE}
+          ballotName={electionName}
+          choices={choices}
+          choicePage={true}
+        />
+        <FooterVoting />
+      </div>
     </div>
   );
 }

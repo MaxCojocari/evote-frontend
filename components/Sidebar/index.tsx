@@ -7,9 +7,10 @@ import logoutIcon from "../../public/logout-icon.svg";
 export default function Sidebar() {
   return (
     <div className={classes.content}>
-      <div className={classes.nav}>
-        <Logo color={"#FFF"} />
-        <div className={classes.nav_header}></div>
+      <div>
+        <div style={{ marginBottom: "32px" }}>
+          <Logo color={"#FFF"} />
+        </div>
         <div className={classes.text}>
           <p
             style={{
@@ -31,21 +32,21 @@ export default function Sidebar() {
               lineHeight: "30.5px",
             }}
           >
-            Alegerile Prezidențiale 2023!
+            Alegerile Prezidențiale 2024!
           </p>
         </div>
-        <div className={classes.frame9}>
-          <Image className={classes.avatar} src={avatar} alt={"avatar-img"} />
-          <div className={classes.textBox}>
-            <p className={classes.name}>Olivia Rhye</p>
-            <p className={classes.email}>olivia@untitledui.com</p>
-          </div>
-          <Image
-            className={classes.logoutIcon}
-            src={logoutIcon}
-            alt={"logout-icon"}
-          />
+      </div>
+      <div className={classes.frame9}>
+        <Image className={classes.avatar} src={avatar} alt={"avatar-img"} />
+        <div className={classes.textBox}>
+          <p className={classes.name}>Olivia Rhye</p>
+          <p className={classes.email}>olivia@untitledui.com</p>
         </div>
+        <Image
+          className={classes.logoutIcon}
+          src={logoutIcon}
+          alt={"logout-icon"}
+        />
       </div>
     </div>
   );

@@ -13,14 +13,13 @@ export default function VotingChooseCampaign() {
         style={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "space-between",
         }}
       >
         <Ballot
           votingState={VotingStep.CHOOSE_CAMPAIGN}
           ballotName={"Votare"}
-          electionsOrCandidates={elections}
+          choices={elections}
           choicePage={false}
         />
         <FooterVoting />
