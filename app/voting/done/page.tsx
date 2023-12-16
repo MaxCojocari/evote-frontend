@@ -6,26 +6,19 @@ import classes from "../styles.module.css";
 import FooterVoting from "../../../components/FooterVoting";
 import VotedSuccessfully from "../../../components/VotedSuccessfully";
 import { useEffect, useState } from "react";
-import { elections } from "../../../mockData";
+import { getElectionById } from "../../../services/election.service";
 
 export default function VotingDone() {
-  const [electionName, setElectionName] = useState("");
+  const [election, setElection] = useState<Election>();
   const searchParams = useSearchParams();
-  const router = useRouter();
-
-  const getElection = (id: string): Election => {
-    return elections.filter((ballot) => (ballot.id = id))[0];
-  };
 
   useEffect(() => {
     const id = searchParams.get("election_id");
-    if (!id) {
-      router.push("/voting");
-      return;
-    }
-    const election = getElection(id as string);
-    setElectionName(election.description);
-  }, [searchParams, router]);
+    getElectionById(id as string).then((res) => {
+      setElection(res?.data);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={classes.main}>
@@ -38,7 +31,7 @@ export default function VotingDone() {
         }}
       >
         <VotedSuccessfully
-          ballotName={electionName}
+          ballotName={election?.description}
           votingState={VotingStep.VOTED}
         />
         <FooterVoting />

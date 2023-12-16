@@ -1,30 +1,25 @@
 "use client";
 import Image from "next/image";
 import classes from "./styles.module.css";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function ElectionBox({ choice }: any) {
+  const router = useRouter();
+
   return (
-    <Link
-      href={{
-        pathname: "/voting/choices",
-        query: { election_id: choice.id },
-      }}
-      style={{
-        textDecoration: "none",
-      }}
+    <div
+      className={classes.main}
+      onClick={() => router.push(`/voting/choices?election_id=${choice.id}`)}
     >
-      <div className={classes.main}>
-        <Image
-          className={classes.img}
-          src={`/${choice.img}`}
-          alt="img"
-          width={0}
-          height={0}
-          sizes="100vw"
-        />
-        <div className={classes.text}>{choice.description}</div>
-      </div>
-    </Link>
+      <Image
+        className={classes.img}
+        src={`/${choice.img}`}
+        alt="img"
+        width={0}
+        height={0}
+        sizes="100vw"
+      />
+      <div className={classes.text}>{choice.description}</div>
+    </div>
   );
 }

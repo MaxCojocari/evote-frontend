@@ -1,10 +1,14 @@
+"use client";
 import Image from "next/image";
 import Logo from "../Logo";
 import classes from "./styles.module.css";
 import avatar from "../../public/Avatar.png";
 import logoutIcon from "../../public/logout-icon.svg";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
+  const router = useRouter();
+
   return (
     <div className={classes.content}>
       <div>
@@ -46,6 +50,7 @@ export default function Sidebar() {
           className={classes.logoutIcon}
           src={logoutIcon}
           alt={"logout-icon"}
+          onClick={() => router.replace("/")}
         />
       </div>
     </div>

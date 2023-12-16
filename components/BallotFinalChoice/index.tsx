@@ -1,45 +1,39 @@
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import Wizard from "../Wizard";
-import { Choice } from "../../types/types";
+import { Choice, Election } from "../../types/types";
 import { useEffect, useState } from "react";
 import classes from "./styles.module.css";
 import BallotHeader from "../BallotHeader";
-import { elections } from "../../mockData";
+import { getElectionById, getElections } from "../../services/election.service";
 
 export default function BallotFinalChoice({ ballotName, votingState }: any) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [electionId, setElectionId] = useState<string>(
-    searchParams.get("election_id") as string
-  );
-  const [choiceId, setChoiceId] = useState<string>(
-    searchParams.get("choice_id") as string
-  );
-
-  const getCandidate = (electionId: string, choiceId: string): Choice => {
-    const election = elections.filter((ballot) => ballot.id === electionId)[0];
-    return election.choices.filter((choice) => choice.id === choiceId)[0];
-  };
-
-  const [candidate, setCandidate] = useState<Choice>(
-    getCandidate(electionId, choiceId)
-  );
+  const [election, setElection] = useState<Election>();
+  const [candidate, setCandidate] = useState<Choice>();
 
   const handleConfirmClick = () => {
     if (candidate) {
-      router.push(`/voting/done?election_id=${electionId}`);
+      router.replace(`/voting/done?election_id=${election?.id}`);
     }
   };
 
   useEffect(() => {
     const electionId = searchParams.get("election_id") as string;
     const choiceId = searchParams.get("choice_id") as string;
-    const candidate = getCandidate(electionId, choiceId);
-    setElectionId(electionId);
-    setChoiceId(choiceId);
-    setCandidate(candidate);
-  }, [searchParams]);
+
+    getElectionById(electionId).then((res) => {
+      const election = res?.data as Election;
+      setElection(election);
+      const candidate = election?.choices?.find(
+        (choice: Choice) => choice.id === choiceId
+      );
+      setCandidate(candidate);
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={classes.main}>
@@ -82,14 +76,14 @@ export default function BallotFinalChoice({ ballotName, votingState }: any) {
             >
               <Image
                 className={classes.img}
-                src={`/${candidate.img}`}
+                src={`/${candidate?.img}`}
                 alt="img-choice"
                 width={0}
                 height={0}
                 sizes="100vw"
               />
               <div className={classes.text}>
-                {(candidate.description as string).toUpperCase()}
+                {(candidate?.description as string)?.toUpperCase()}
               </div>
             </div>
           </div>
@@ -97,7 +91,7 @@ export default function BallotFinalChoice({ ballotName, votingState }: any) {
             <button
               className={classes.buttonReject}
               onClick={() =>
-                router.push(`/voting/choices?election_id=${electionId}`)
+                router.replace(`/voting/choices?election_id=${election?.id}`)
               }
             >
               <p>Anulează</p>

@@ -1,11 +1,19 @@
+"use client";
+import { useEffect, useState } from "react";
 import Ballot from "../../components/Ballot";
 import FooterVoting from "../../components/FooterVoting";
 import Sidebar from "../../components/Sidebar";
-import { elections } from "../../mockData";
-import { VotingStep } from "../../types/types";
+import { Election, VotingStep } from "../../types/types";
 import classes from "./styles.module.css";
+import { getElections } from "../../services/election.service";
 
 export default function VotingChooseCampaign() {
+  const [elections, setElections] = useState<Election[]>([]);
+
+  useEffect(() => {
+    getElections().then((res) => setElections(res?.data));
+  }, []);
+
   return (
     <div className={classes.main}>
       <Sidebar />

@@ -12,7 +12,7 @@ export default function ChoicesContainer({ choices }: any) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [localChoicesState, setLocalChoicesState] = useState<StateTracker[]>(
-    choices.map((choice: Choice) => ({
+    choices?.map((choice: Choice) => ({
       choice,
       active: false,
     }))
@@ -31,11 +31,9 @@ export default function ChoicesContainer({ choices }: any) {
 
   const handleVoteClick = () => {
     const electionId = searchParams.get("election_id");
-    const choice = localChoicesState.filter(
-      (item: StateTracker) => item.active
-    )[0];
+    const choice = localChoicesState?.find((item: StateTracker) => item.active);
     if (choice) {
-      router.push(
+      router.replace(
         `/voting/confirm?election_id=${electionId}&choice_id=${choice.choice.id}`
       );
     }
@@ -43,18 +41,17 @@ export default function ChoicesContainer({ choices }: any) {
 
   useEffect(() => {
     setLocalChoicesState(
-      choices.map((choice: Choice) => ({
+      choices?.map((choice: Choice) => ({
         choice,
         active: false,
       }))
     );
-    console.log(localChoicesState);
   }, [choices]);
 
   return (
     <>
       <div className={classes.main}>
-        {localChoicesState.map((item: StateTracker, index: number) => (
+        {localChoicesState?.map((item: StateTracker, index: number) => (
           <ChoiceBox
             key={index}
             choice={item.choice}
