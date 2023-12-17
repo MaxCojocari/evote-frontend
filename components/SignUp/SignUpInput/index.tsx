@@ -8,7 +8,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { registerUser } from "../../../services/auth.service";
+import { generateOtp, registerUser } from "../../../services/auth.service";
 
 const phoneRegExp = /^0\d{8}$/;
 const idnpRegExp = /^\d{13}$/;
@@ -42,22 +42,34 @@ export default function SignUpInput() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = methods;
 
-  function signUpHandler(event: any) {
-    console.log({
-      name,
-      surname,
+  async function signUpHandler(event: any) {
+    const resRegister = await registerUser({
       idnp,
-      phoneNr,
+      phone: "+373" + phoneNr.slice(1),
     });
-    // registerUser({
-    //   name,
-    //   surname,
-    //   idnp,
-    //   phoneNr,
-    // });
+    if (resRegister?.status !== 200) {
+      setError("idnp", {
+        type: "custom",
+        message: "Datele introduse sunt incorecte!",
+      });
+      setError("phoneNr", {
+        type: "custom",
+        message: "Datele introduse sunt incorecte!",
+      });
+      return;
+    }
+    const id = resRegister?.data?.user.id;
+    console.log("User id: ", id);
+
+    localStorage.setItem("userId", id);
+    const resOtp = await generateOtp({ id });
+    console.log("Otp: ", resOtp?.data["totp_code"]);
+
+    // await sendSms({phone: phoneNr, data: resOtp?.data.totp_code})
     setTimeout(() => {
       router.push(`/signup/receive-token`);
     }, 1000);

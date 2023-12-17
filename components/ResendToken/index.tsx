@@ -3,9 +3,11 @@ import classes from "./styles.module.css";
 import { generateOtp } from "../../services/auth.service";
 
 export default function ResendToken({ baseText, hrefText }: any) {
-  const resendToken = () => {
-    // generateOtp();
-    console.log("resendToken");
+  const resendToken = async () => {
+    const id = localStorage.getItem("userId");
+    const res = await generateOtp({ id });
+    console.log("new otp: ", res?.data);
+    // await sendSms({phone: phoneNr, data: resOtp?.data.totp_code})
   };
 
   return (

@@ -5,9 +5,9 @@ import * as yup from "yup";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
-import { verifyToken } from "../../../services/auth.service";
+import { generateOtp, verifyToken } from "../../../services/auth.service";
 
-const tokenRegExp = /^[a-zA-Z0-9]{12}$/;
+const tokenRegExp = /^[a-zA-Z0-9]{32}$/;
 
 const validationSchema = yup
   .object()
@@ -35,19 +35,21 @@ export default function LogInInput({ loginRedirectRelativeUrl }: any) {
   async function logInHandler(event: any) {
     console.log("Token: ", token);
 
-    // const res = await verifyToken({ token });
-    // if (res?.status === 200) {
-    //   router.push(loginRedirectRelativeUrl);
-    // } else {
-    //   setError("token", {
-    //     type: 'manual',
-    //     message: 'Token-ul este incorect!',
-    //   });
-    // }
+    const res = await verifyToken({ token_value: token });
+    if (res?.status === 200) {
+      const id = localStorage.getItem("userId");
+      const res = await generateOtp({ id });
+      console.log(res?.data);
 
-    setTimeout(() => {
-      router.push(loginRedirectRelativeUrl);
-    }, 1000);
+      setTimeout(() => {
+        router.push(loginRedirectRelativeUrl);
+      }, 1000);
+    } else {
+      setError("token", {
+        type: "manual",
+        message: "Token-ul este incorect!",
+      });
+    }
   }
 
   return (

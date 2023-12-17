@@ -1,20 +1,27 @@
 import classes from "./styles.module.css";
 import AuthCode from "react-auth-code-input";
 import "./index.css";
-import { useEffect } from "react";
-import { generateSecret } from "../../services/auth.service";
+import { useEffect, useState } from "react";
+import { getUserById } from "../../services/auth.service";
 
 export default function CodeInput({ handleOnChange }: any) {
-  const telNr = "078999905";
+  const [phone, setPhone] = useState("+12345678901");
+
+  useEffect(() => {
+    const id = localStorage.getItem("userId");
+    getUserById(id as string).then((res) => {
+      setPhone(res?.data?.phone);
+    });
+  }, []);
 
   function getDottedTelNr(telNr: string) {
-    return telNr.slice(0, 2) + "****" + telNr.slice(6, 10);
+    return "0" + telNr?.slice(4, 6) + "****" + telNr?.slice(10, 12);
   }
 
   return (
     <div className={classes.inputWithLabel}>
       <p className={classes.helperText}>
-        Introdu codul care a venit pe numărul {getDottedTelNr(telNr)}
+        Introdu codul care a venit pe numărul {getDottedTelNr(phone)}
       </p>
       <AuthCode
         onChange={handleOnChange}
