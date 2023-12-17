@@ -1,8 +1,21 @@
 "use client";
-
-import Image from "next/image";
-import styles from "./page.module.css";
+import FooterVoting from "../components/FooterVoting";
+import SidebarHome from "../components/SidebarHome";
+import classes from "./page.module.css";
 
 export default function Home() {
-  return <div>SwiftVote App</div>;
+  return (
+    <div className={classes.main}>
+      <SidebarHome />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <FooterVoting />
+      </div>
+    </div>
+  );
 }

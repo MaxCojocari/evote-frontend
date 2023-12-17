@@ -1,23 +1,23 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { JWT_SECRET } from "../../../config/config";
+import { JWT_SECRET } from "../../../../config/config";
 
 import {
   verifyToken,
   getAuthenticatedUser,
-} from "../../../services/auth.service";
+} from "../../../../services/auth.service";
 
-export default NextAuth({
+const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        password: { label: "Password", type: "password" },
+        token_value: { label: "token", type: "password" },
       },
       async authorize(credentials: any, req) {
         try {
           const res = await verifyToken({
-            password: credentials?.password ?? "",
+            token_value: credentials?.token_value ?? "",
           });
 
           if (res?.data) {
@@ -39,7 +39,7 @@ export default NextAuth({
     strategy: "jwt",
 
     // Seconds - How long until an idle session expires and is no longer valid.
-    maxAge: 60 * 60, // 1 hour
+    maxAge: 1000 * 60, // 1 hour
   },
 
   jwt: {
@@ -75,3 +75,5 @@ export default NextAuth({
   // Enable debug messages in the console if you are having problems
   debug: true,
 });
+
+export { handler as GET, handler as POST };

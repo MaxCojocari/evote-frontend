@@ -4,7 +4,7 @@ import { axiosAuthHeader } from "../config/auth.config";
 
 export const generateOtp = async () => {
   return axios
-    .post(`${API_URL}/2fa/generateOtp`)
+    .post(`${API_URL}/api/authen/2fa/generateOtp`)
     .then((res) => {
       return res;
     })
@@ -13,7 +13,11 @@ export const generateOtp = async () => {
 
 export const twoFactorAuthAuthenticate = async (data: Object) => {
   return axios
-    .post(`${API_URL}/2fa/authenticate`, { ...data }, await axiosAuthHeader())
+    .post(
+      `${API_URL}/api/authen/2fa/authenticate`,
+      { ...data },
+      await axiosAuthHeader()
+    )
     .then((res) => {
       return res;
     })
@@ -22,7 +26,7 @@ export const twoFactorAuthAuthenticate = async (data: Object) => {
 
 export const generateToken = async () => {
   return axios
-    .post(`${API_URL}/auth/generate-token`, await axiosAuthHeader())
+    .post(`${API_URL}/api/authen/auth/generate-token`, await axiosAuthHeader())
     .then((res) => {
       return res;
     })
@@ -31,7 +35,7 @@ export const generateToken = async () => {
 
 export const verifyToken = async (data: Object) => {
   return axios
-    .post(`${API_URL}/auth/verify-token`, { ...data })
+    .post(`${API_URL}/api/authen/auth/verify-token`, { ...data })
     .then((res) => {
       return res;
     })
@@ -40,7 +44,7 @@ export const verifyToken = async (data: Object) => {
 
 export const registerUser = async (data: Object) => {
   return axios
-    .post(`${API_URL}/auth/register`, { ...data })
+    .post(`${API_URL}/api/authen/auth/register`, { ...data })
     .then((res) => {
       return res;
     })
@@ -49,7 +53,7 @@ export const registerUser = async (data: Object) => {
 
 export const getAuthenticatedUser = async (accessToken: string) => {
   return axios
-    .get(`${API_URL}/users/authenticated-user`, {
+    .get(`${API_URL}/api/users/authenticated-user`, {
       headers: { Authorization: `Bearer ${accessToken}` },
     })
     .then((res) => {
