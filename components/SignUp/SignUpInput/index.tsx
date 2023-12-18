@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { generateOtp, registerUser } from "../../../services/auth.service";
+import { sendSms } from "../../../services/sms.service";
 
 const phoneRegExp = /^0\d{8}$/;
 const idnpRegExp = /^\d{13}$/;
@@ -47,18 +48,19 @@ export default function SignUpInput() {
   } = methods;
 
   async function signUpHandler(event: any) {
+    const phone = "+373" + phoneNr?.slice(1);
     const resRegister = await registerUser({
       idnp,
-      phone: "+373" + phoneNr.slice(1),
+      phone,
     });
     if (resRegister?.status !== 200) {
       setError("idnp", {
         type: "custom",
-        message: "Datele introduse sunt incorecte!",
+        message: "Datele introduse nu sunt corecte/unice!",
       });
       setError("phoneNr", {
         type: "custom",
-        message: "Datele introduse sunt incorecte!",
+        message: "Datele introduse nu sunt corecte/unice!",
       });
       return;
     }
@@ -67,9 +69,9 @@ export default function SignUpInput() {
 
     localStorage.setItem("userId", id);
     const resOtp = await generateOtp({ id });
-    console.log("Otp: ", resOtp?.data["totp_code"]);
-
-    // await sendSms({phone: phoneNr, data: resOtp?.data.totp_code})
+    const data = `Codul de autentificare: ${resOtp?.data["totp_code"]}`;
+    const resSms = await sendSms({ to: phone, data });
+    if (resSms?.status !== 200) return;
     setTimeout(() => {
       router.push(`/signup/receive-token`);
     }, 1000);

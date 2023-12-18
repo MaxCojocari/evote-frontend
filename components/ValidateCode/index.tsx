@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import CodeInput from "../CodeInput";
 import classes from "./styles.module.css";
 import { useRouter } from "next/navigation";
-import { generateToken, getUserById } from "../../services/auth.service";
+import { generateToken } from "../../services/auth.service";
 import { signIn } from "next-auth/react";
+import { getUserById } from "../../services/user.service";
+import { sendSms } from "../../services/sms.service";
 
 export default function ValidateCode({
   buttonName,
@@ -22,7 +24,7 @@ export default function ValidateCode({
   useEffect(() => {
     const id = localStorage.getItem("userId");
     getUserById(id as string).then((res) => {
-      setPhone(res?.data.phone);
+      setPhone(res?.data?.phone);
     });
   }, []);
 
@@ -51,12 +53,15 @@ export default function ValidateCode({
         const res = await generateToken({ id });
         if (res?.status === 202 || res?.status === 200) {
           const token = res?.data.token.token_value;
-          console.log("Unique token: ", token);
+          const data = `Tokenul personal: ${token}\nAtentie! Nu comunicati acest token altor persoane!`;
           setError("");
-          // await sendSms({
-          //   phone: phoneNr,
-          //   data: token,
-          // });
+
+          const id = localStorage.getItem("userId");
+          const resGetUser = await getUserById(id as string);
+          const phoneNr = resGetUser?.data.phone;
+          const resSms = await sendSms({ to: phoneNr, data });
+
+          if (resSms?.status !== 200) return;
           setTimeout(() => {
             router.push(buttonRedirectRelativeUrl);
           }, 1000);

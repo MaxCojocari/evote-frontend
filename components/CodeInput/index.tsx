@@ -2,7 +2,7 @@ import classes from "./styles.module.css";
 import AuthCode from "react-auth-code-input";
 import "./index.css";
 import { useEffect, useState } from "react";
-import { getUserById } from "../../services/auth.service";
+import { getUserById } from "../../services/user.service";
 
 export default function CodeInput({ handleOnChange }: any) {
   const [phone, setPhone] = useState("+12345678901");
@@ -15,7 +15,7 @@ export default function CodeInput({ handleOnChange }: any) {
   }, []);
 
   function getDottedTelNr(telNr: string) {
-    return "0" + telNr?.slice(4, 6) + "****" + telNr?.slice(10, 12);
+    return "0" + telNr?.slice(4, 5) + "****" + telNr?.slice(9, 12);
   }
 
   return (

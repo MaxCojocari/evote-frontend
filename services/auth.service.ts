@@ -51,7 +51,10 @@ export const registerUser = async (data: Object) => {
     .then((res) => {
       return res;
     })
-    .catch((e) => console.log(e));
+    .catch((e) => {
+      console.log(e);
+      return e.response;
+    });
 };
 
 export const getAuthenticatedUser = async (accessToken: string) => {
@@ -59,17 +62,6 @@ export const getAuthenticatedUser = async (accessToken: string) => {
     .get(`${API_URL}/api/users/authenticated-user`, {
       headers: { Authorization: `Bearer ${accessToken}` },
     })
-    .then((res) => {
-      return res;
-    })
-    .catch((e) => {
-      return e;
-    });
-};
-
-export const getUserById = async (id: string) => {
-  return axios
-    .get(`${API_URL}/api/users/${id}`)
     .then((res) => {
       return res;
     })

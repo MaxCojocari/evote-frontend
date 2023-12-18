@@ -1,13 +1,19 @@
 "use client";
 import classes from "./styles.module.css";
 import { generateOtp } from "../../services/auth.service";
+import { getUserById } from "../../services/user.service";
+import { sendSms } from "../../services/sms.service";
 
 export default function ResendToken({ baseText, hrefText }: any) {
   const resendToken = async () => {
     const id = localStorage.getItem("userId");
+    const resGetUser = await getUserById(id as string);
+    const phoneNr = resGetUser?.data.phone;
     const res = await generateOtp({ id });
-    console.log("new otp: ", res?.data);
-    // await sendSms({phone: phoneNr, data: resOtp?.data.totp_code})
+    const data = `Codul de autentificare: ${res?.data["totp_code"]}`;
+
+    const resSms = await sendSms({ to: phoneNr, data });
+    if (resSms?.status !== 200) return;
   };
 
   return (
