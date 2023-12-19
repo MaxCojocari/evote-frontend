@@ -13,7 +13,7 @@ export default function ResendToken({ baseText, hrefText }: any) {
     const data = `Codul de autentificare: ${res?.data["totp_code"]}`;
 
     const resSms = await sendSms({ to: phoneNr, data });
-    if (resSms?.status !== 200) return;
+    if (resSms && resSms?.status !== 200) return;
   };
 
   return (

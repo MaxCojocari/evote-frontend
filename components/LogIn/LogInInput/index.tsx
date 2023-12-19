@@ -7,9 +7,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { generateOtp, verifyToken } from "../../../services/auth.service";
 import { sendSms } from "../../../services/sms.service";
-import { getUserById } from "../../../services/user.service";
 
-const tokenRegExp = /^[a-zA-Z0-9]{32}$/;
+const tokenRegExp = /^[a-zA-Z0-9]{9}$/;
 
 const validationSchema = yup
   .object()
@@ -37,14 +36,14 @@ export default function LogInInput({ loginRedirectRelativeUrl }: any) {
   async function logInHandler(event: any) {
     const res = await verifyToken({ token_value: token });
     if (res?.status === 200) {
-      const id = localStorage.getItem("userId");
-      const resGetUser = await getUserById(id as string);
-      const phone = resGetUser?.data.phone;
+      const id = res?.data.user.id;
+      localStorage.setItem("userId", id);
+      const phone = res?.data.user.phone;
       const resOtp = await generateOtp({ id });
       const data = `Codul de autentificare: ${resOtp?.data["totp_code"]}`;
 
       const resSms = await sendSms({ to: phone, data });
-      if (resSms?.status !== 200) return;
+      if (resSms && resSms?.status !== 200) return;
       setTimeout(() => {
         router.push(loginRedirectRelativeUrl);
       }, 1000);

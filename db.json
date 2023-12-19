@@ -1,7 +1,7 @@
 {
     "elections": [
         {
-            "id": "ab0ded4b-9151-46b1-85a4-0317ca2b407f",
+            "id": 1,
             "description": "Alegeri prezidențiale",
             "img": "chisinau.jpeg",
             "choices": [
@@ -28,7 +28,7 @@
             ]
         },
         {
-            "id": "f427b9b9-2def-4d6f-bcfa-9f209df28dfb",
+            "id": 2,
             "description": "Alegeri municipale",
             "img": "balti.jpeg",
             "choices": [

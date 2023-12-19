@@ -5,7 +5,11 @@ import { Choice, Election } from "../../types/types";
 import { useEffect, useState } from "react";
 import classes from "./styles.module.css";
 import BallotHeader from "../BallotHeader";
-import { getElectionById, getElections } from "../../services/election.service";
+import {
+  getElectionById,
+  getElections,
+  submitVote,
+} from "../../services/election.service";
 
 export default function BallotFinalChoice({ ballotName, votingState }: any) {
   const router = useRouter();
@@ -13,10 +17,13 @@ export default function BallotFinalChoice({ ballotName, votingState }: any) {
   const [election, setElection] = useState<Election>();
   const [candidate, setCandidate] = useState<Choice>();
 
-  const handleConfirmClick = () => {
-    if (candidate) {
-      router.replace(`/voting/done?election_id=${election?.id}`);
-    }
+  const handleConfirmClick = async () => {
+    const res = await submitVote({
+      election_id: +(election?.id as string),
+      choice_id: +(candidate?.id as string),
+    });
+    if (res && res?.status !== 201) return;
+    router.replace(`/voting/done?election_id=${election?.id}`);
   };
 
   useEffect(() => {
@@ -26,8 +33,10 @@ export default function BallotFinalChoice({ ballotName, votingState }: any) {
     getElectionById(electionId).then((res) => {
       const election = res?.data as Election;
       setElection(election);
+      console.log("Choice id: ", choiceId);
+
       const candidate = election?.choices?.find(
-        (choice: Choice) => choice.id === choiceId
+        (choice: Choice) => choice.id.toString() === choiceId
       );
       setCandidate(candidate);
     });

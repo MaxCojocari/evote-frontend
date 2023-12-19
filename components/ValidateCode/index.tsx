@@ -61,7 +61,7 @@ export default function ValidateCode({
           const phoneNr = resGetUser?.data.phone;
           const resSms = await sendSms({ to: phoneNr, data });
 
-          if (resSms?.status !== 200) return;
+          if (resSms && resSms?.status !== 200) return;
           setTimeout(() => {
             router.push(buttonRedirectRelativeUrl);
           }, 1000);

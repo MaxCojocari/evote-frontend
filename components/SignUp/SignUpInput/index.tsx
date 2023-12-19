@@ -71,7 +71,7 @@ export default function SignUpInput() {
     const resOtp = await generateOtp({ id });
     const data = `Codul de autentificare: ${resOtp?.data["totp_code"]}`;
     const resSms = await sendSms({ to: phone, data });
-    if (resSms?.status !== 200) return;
+    if (resSms && resSms?.status !== 200) return;
     setTimeout(() => {
       router.push(`/signup/receive-token`);
     }, 1000);
