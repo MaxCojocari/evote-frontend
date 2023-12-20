@@ -6,12 +6,18 @@ import Sidebar from "../../components/Sidebar";
 import { Election, VotingStep } from "../../types/types";
 import classes from "./styles.module.css";
 import { getElections } from "../../services/election.service";
+import { useSession } from "next-auth/react";
+import BallotError from "../../components/BallotError";
 
 export default function VotingChooseCampaign() {
   const [elections, setElections] = useState<Election[]>([]);
+  const { status } = useSession();
 
   useEffect(() => {
-    getElections().then((res) => setElections(res?.data));
+    if (status === "authenticated") {
+      getElections().then((res) => setElections(res?.data));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -24,12 +30,15 @@ export default function VotingChooseCampaign() {
           justifyContent: "space-between",
         }}
       >
-        <Ballot
-          votingState={VotingStep.CHOOSE_CAMPAIGN}
-          ballotName={"Votare"}
-          choices={elections}
-          choicePage={false}
-        />
+        {status === "authenticated" && (
+          <Ballot
+            votingState={VotingStep.CHOOSE_CAMPAIGN}
+            ballotName={"Votare"}
+            choices={elections}
+            choicePage={false}
+          />
+        )}
+        {status === "unauthenticated" && <BallotError />}
         <FooterVoting />
       </div>
     </div>

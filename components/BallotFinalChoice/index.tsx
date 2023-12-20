@@ -22,7 +22,14 @@ export default function BallotFinalChoice({ ballotName, votingState }: any) {
       election_id: +(election?.id as string),
       choice_id: +(candidate?.id as string),
     });
-    if (res && res?.status !== 201) return;
+    console.log("BallotFinalChoice res: ", res);
+
+    if (res && res?.response && res?.response?.status !== 201) {
+      router.replace(
+        `/voting/done?election_id=${election?.id}&error_status=${res?.response?.status}`
+      );
+      return;
+    }
     router.replace(`/voting/done?election_id=${election?.id}`);
   };
 

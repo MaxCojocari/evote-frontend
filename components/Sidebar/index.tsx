@@ -4,10 +4,14 @@ import Logo from "../Logo";
 import classes from "./styles.module.css";
 import avatar from "../../public/Avatar.png";
 import logoutIcon from "../../public/logout-icon.svg";
-import { useRouter } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Sidebar() {
-  const router = useRouter();
+  const { status } = useSession();
+
+  const handleSignOut = () => {
+    signOut({ callbackUrl: "/" });
+  };
 
   return (
     <div className={classes.content}>
@@ -40,19 +44,21 @@ export default function Sidebar() {
           </p>
         </div>
       </div>
-      <div className={classes.frame9}>
-        <Image className={classes.avatar} src={avatar} alt={"avatar-img"} />
-        <div className={classes.textBox}>
-          <p className={classes.name}>Olivia Rhye</p>
-          <p className={classes.email}>olivia@untitledui.com</p>
+      {status === "authenticated" && (
+        <div className={classes.frame9}>
+          <Image className={classes.avatar} src={avatar} alt={"avatar-img"} />
+          <div className={classes.textBox}>
+            <p className={classes.name}>Olivia Rhye</p>
+            <p className={classes.email}>olivia@untitledui.com</p>
+          </div>
+          <Image
+            className={classes.logoutIcon}
+            src={logoutIcon}
+            alt={"logout-icon"}
+            onClick={() => handleSignOut()}
+          />
         </div>
-        <Image
-          className={classes.logoutIcon}
-          src={logoutIcon}
-          alt={"logout-icon"}
-          onClick={() => router.replace("/")}
-        />
-      </div>
+      )}
     </div>
   );
 }

@@ -7,17 +7,18 @@ import classes from "../styles.module.css";
 import { useEffect, useState } from "react";
 import FooterVoting from "../../../components/FooterVoting";
 import { getElectionById } from "../../../services/election.service";
+import { useSession } from "next-auth/react";
+import BallotError from "../../../components/BallotError";
 
 export default function VotingChoice() {
   const [election, setElection] = useState<Election>();
   const searchParams = useSearchParams();
+  const { status } = useSession();
 
   useEffect(() => {
     const id = searchParams.get("election_id");
     getElectionById(id as string).then((res) => {
       setElection(res?.data);
-      console.log(id);
-      console.log("election: ", res?.data);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -32,12 +33,15 @@ export default function VotingChoice() {
           justifyContent: "center",
         }}
       >
-        <Ballot
-          votingState={VotingStep.CHOOSE_CANDIDATE}
-          ballotName={election?.description}
-          choices={election?.choices}
-          choicePage={true}
-        />
+        {status === "authenticated" && (
+          <Ballot
+            votingState={VotingStep.CHOOSE_CANDIDATE}
+            ballotName={election?.description}
+            choices={election?.choices}
+            choicePage={true}
+          />
+        )}
+        {status === "unauthenticated" && <BallotError />}
         <FooterVoting />
       </div>
     </div>
