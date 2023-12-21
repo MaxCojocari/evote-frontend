@@ -1,6 +1,5 @@
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { JWT_SECRET } from "../../../../config/config";
 
 import {
   getAuthenticatedUser,
@@ -35,7 +34,7 @@ export const authOptions: AuthOptions = {
     }),
   ],
 
-  secret: JWT_SECRET,
+  secret: process.env.JWT_SECRET,
 
   session: {
     strategy: "jwt",
@@ -45,7 +44,7 @@ export const authOptions: AuthOptions = {
   },
 
   jwt: {
-    secret: JWT_SECRET,
+    secret: process.env.JWT_SECRET,
   },
 
   callbacks: {

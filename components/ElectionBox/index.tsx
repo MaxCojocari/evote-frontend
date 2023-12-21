@@ -9,7 +9,7 @@ export default function ElectionBox({ choice }: any) {
   return (
     <div
       className={classes.main}
-      onClick={() => router.push(`/voting/choices?election_id=${choice.id}`)}
+      onClick={() => router.replace(`/voting/choices?election_id=${choice.id}`)}
     >
       <Image
         className={classes.img}
