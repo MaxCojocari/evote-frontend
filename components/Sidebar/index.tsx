@@ -5,12 +5,16 @@ import classes from "./styles.module.css";
 import avatar from "../../public/Avatar.png";
 import logoutIcon from "../../public/logout-icon.svg";
 import { signOut, useSession } from "next-auth/react";
+import { APP_URL } from "../../config/config";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
+  const router = useRouter();
   const { status } = useSession();
 
   const handleSignOut = () => {
-    signOut({ callbackUrl: "/" });
+    signOut({ redirect: false });
+    router.replace("/");
   };
 
   return (

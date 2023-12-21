@@ -33,7 +33,8 @@ export default function SidebarHome() {
   const { status } = useSession();
 
   const handleSignOut = () => {
-    signOut({ callbackUrl: "/" });
+    signOut({ redirect: false });
+    router.replace("/");
   };
 
   const areElectionsAvailableForVoting = useCallback(async () => {
@@ -87,7 +88,7 @@ export default function SidebarHome() {
           </p>
         </div>
 
-        {!isVoteButtonVisible && (
+        {!isVoteButtonVisible && status === "authenticated" && (
           <div style={{ marginTop: "-20px" }}>
             <button
               className={classes.buttonVoteNow}
