@@ -17,7 +17,10 @@ export const twoFactorAuthAuthenticate = async (data: Object) => {
     .then((res) => {
       return res;
     })
-    .catch((e) => console.log(e));
+    .catch((e) => {
+      console.log(e);
+      return e;
+    });
 };
 
 export const generateToken = async (data: Object) => {

@@ -4,7 +4,7 @@ import CodeInput from "../CodeInput";
 import classes from "./styles.module.css";
 import { useRouter } from "next/navigation";
 import { generateToken } from "../../services/auth.service";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import { getUserById } from "../../services/user.service";
 import { sendSms } from "../../services/sms.service";
 
@@ -51,6 +51,7 @@ export default function ValidateCode({
 
       if (isReceiveToken) {
         const res = await generateToken({ id });
+        signOut({ redirect: false });
         if (res?.status === 202 || res?.status === 200) {
           const token = res?.data.token.token_value;
           const data = `Tokenul personal: ${token}\nAtentie! Nu comunicati acest token altor persoane!`;

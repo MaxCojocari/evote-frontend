@@ -39,6 +39,15 @@ export const submitVote = async (data: Object) => {
     });
 };
 
+export const getVotingStatus = async (id: string) => {
+  return axios
+    .get(`${API_URL}/api/userhistory/vote/${id}`)
+    .then((res) => {
+      return res;
+    })
+    .catch((e) => console.log(e));
+};
+
 // export const getElections = () => {
 //   return axios
 //     .get(`${API_URL}/elections`)

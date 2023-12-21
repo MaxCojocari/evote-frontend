@@ -65,8 +65,6 @@ export default function SignUpInput() {
       return;
     }
     const id = resRegister?.data?.user.id;
-    console.log("User id: ", id);
-
     localStorage.setItem("userId", id);
     const resOtp = await generateOtp({ id });
     const data = `Codul de autentificare: ${resOtp?.data["totp_code"]}`;
