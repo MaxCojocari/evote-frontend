@@ -1,0 +1,39 @@
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 24px;
+  row-gap: 24px;
+  padding: 0px 32px;
+}
+
+.voteButton {
+  display: flex;
+  align-items: flex-end;
+  align-self: stretch;
+  border-radius: 8px;
+
+  display: flex;
+  height: 67px;
+  width: 264px;
+  padding: 18px 18px;
+  justify-content: center;
+  align-items: center;
+  /* gap: 8px; */
+  /* flex: 1 0 0; */
+  border-radius: 8px;
+  border: 1px solid #7f56d9;
+  background: #7f56d9;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  cursor: pointer;
+  margin-top: -40px;
+  margin-bottom: 40px;
+}
+
+.buttonText {
+  color: #fff;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 24px;
+}

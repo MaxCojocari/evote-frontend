@@ -1,0 +1,53 @@
+.heading {
+    flex: 1;
+    position: relative;
+    line-height: 24px;
+    font-weight: 600;
+  }
+  .headingAndDropdown,
+  .metricItem {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .headingAndDropdown {
+    align-self: stretch;
+    flex-direction: row;
+  }
+  .metricItem {
+    flex: 1;
+    border-radius: var(--br-5xs);
+    flex-direction: column;
+    padding: var(--padding-56xl) var(--padding-5xl);
+    background-image: url(/metric-item@3x.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+  }
+  .container,
+  .metricGroup,
+  .section {
+    align-self: stretch;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .metricGroup {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gap-5xl);
+  }
+  .container,
+  .section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .container {
+    padding: var(--padding-0) var(--padding-13xl);
+  }
+  .section {
+    text-align: center;
+    font-size: var(--font-size-xl);
+    color: var(--color-white);
+    font-family: var(--text-sm-medium);
+  }
+  

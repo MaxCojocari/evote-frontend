@@ -1,0 +1,104 @@
+.heading {
+    flex: 1;
+    position: relative;
+    line-height: 24px;
+    font-weight: 500;
+  }
+  .headingAndDropdown {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .number {
+    position: relative;
+    letter-spacing: -0.02em;
+    line-height: 44px;
+    font-weight: 600;
+    display: inline-block;
+    width: 184px;
+  }
+  .arrowUpIcon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .change1 {
+    position: relative;
+    line-height: 20px;
+    font-weight: 500;
+  }
+  .change {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-9xs);
+  }
+  .text {
+    position: relative;
+    line-height: 20px;
+    font-weight: 500;
+    color: var(--color-slategray);
+    text-align: left;
+    display: inline-block;
+    width: 132px;
+    flex-shrink: 0;
+  }
+  .changeAndText,
+  .numberAndBadge {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .changeAndText {
+    align-self: stretch;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gap-5xs);
+    text-align: center;
+    font-size: var(--text-sm-medium-size);
+    color: var(--color-seagreen);
+  }
+  .numberAndBadge {
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap-base);
+  }
+  .chartIcon {
+    position: relative;
+    width: 130px;
+    height: 66px;
+  }
+  .metricItem,
+  .numberAndChart {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .numberAndChart {
+    align-self: stretch;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: var(--gap-base);
+    font-size: var(--display-md-semibold-size);
+  }
+  .metricItem {
+    flex: 1;
+    border-radius: var(--br-5xs);
+    background-color: var(--color-white);
+    box-shadow: 0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06);
+    border: 1px solid var(--color-whitesmoke);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--padding-5xl);
+    gap: var(--gap-5xl);
+    text-align: left;
+    font-size: var(--text-md-medium-size);
+    color: var(--color-gray-100);
+    font-family: var(--text-sm-medium);
+  }
+  

@@ -1,0 +1,11 @@
+.main {
+  display: flex;
+  width: 1260px;
+  min-height: 814px;
+  padding-top: 32px;
+  flex-direction: column;
+  gap: 91px;
+  flex-shrink: 0;
+  border-radius: 40px 0px 0px 40px;
+  background: #fff;
+}

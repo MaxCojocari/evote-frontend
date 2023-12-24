@@ -1,0 +1,99 @@
+.content {
+  display: flex;
+  padding-left: 0px;
+  padding-top: 55px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.nav_header {
+  display: flex;
+  height: 32px;
+  padding: 0px 20px 0px 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.text {
+  width: 202px;
+  height: 125px;
+}
+
+.frame9 {
+  display: flex;
+  /* padding-top: 610px; */
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 38px;
+}
+
+.avatar {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 200px;
+}
+
+.textBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.name {
+  color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.email {
+  color: #f2f4f7;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.logoutIcon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.buttonVoteNow {
+  display: flex;
+  padding: 8px 14px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  border-radius: 8px;
+  border: 1px solid #ff3a29;
+  background: #ff3a29;
+
+  /* Shadow/xs */
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  cursor: pointer;
+}
+
+.buttonVoteNow p {
+  color: #fff;
+
+  /* Text sm/Semibold */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+}

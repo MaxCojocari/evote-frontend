@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  padding: 0px 32px;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+}
+
+.receiveTokenContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 360px;
+  gap: 22px;
+}

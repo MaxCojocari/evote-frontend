@@ -1,0 +1,114 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12.373px;
+  flex: 1 0 0;
+  align-self: stretch;
+}
+
+.stepActive {
+  position: absolute;
+  bottom: -20px;
+  right: 155px;
+  height: 30.933px;
+  align-self: stretch;
+  color: #fff;
+}
+
+.stepInactive {
+  position: absolute;
+  bottom: -19px;
+  right: 150px;
+  height: 30.933px;
+  color: #101828;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24.747px;
+}
+
+.name {
+  display: flex;
+  padding: 0px 12.373px;
+  align-items: flex-start;
+  align-self: stretch;
+  margin-top: 10px;
+}
+
+.textActive {
+  flex: 1 0 0;
+  color: #101828;
+  text-align: center;
+  font-size: 18.56px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24.747px;
+}
+
+.textInactive {
+  flex: 1 0 0;
+  color: #4f5e71;
+  text-align: center;
+  font-size: 18.56px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24.747px;
+}
+
+.circleActive {
+  position: absolute;
+  bottom: -19px;
+  right: 137.5px;
+  height: 40.933px;
+  flex-shrink: 0;
+  fill: #7f56d9;
+  stroke-width: 6.187px;
+  stroke: #7f56d9;
+}
+
+.circleInactive {
+  position: absolute;
+  bottom: -15px;
+  right: 140px;
+  width: 30.933px;
+  height: 30.933px;
+  flex-shrink: 0;
+  fill: #dce3e9;
+}
+
+.circleDone {
+  position: absolute;
+  bottom: -19px;
+  right: 137.5px;
+  height: 40.933px;
+  flex-shrink: 0;
+  stroke-width: 6.187px;
+  stroke: #18be71;
+  fill: #18be71;
+}
+
+.line {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.lineFilled {
+  height: 3.093px;
+  flex: 1 0 0;
+  background: #7f56d9;
+}
+
+.lineEmpty {
+  height: 3.093px;
+  flex: 1 0 0;
+  background: #dce3e9;
+}
+
+.lineDone {
+  height: 3.093px;
+  flex: 1 0 0;
+  background: #18be71;
+}

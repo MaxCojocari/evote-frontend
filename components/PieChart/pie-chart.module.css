@@ -1,0 +1,94 @@
+.color {
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+    border-radius: var(--br-3xs);
+    background-color: var(--color-white);
+    box-shadow: 0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 3px rgba(16, 24, 40, 0.1);
+    z-index: 0;
+  }
+  .colorIcon,
+  .groupChild {
+    position: absolute;
+    left: 0;
+    max-height: 100%;
+  }
+  .groupChild {
+    height: 100%;
+    width: 36.42%;
+    top: 0;
+    right: 63.58%;
+    bottom: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .colorIcon {
+    height: calc(100% - 10.1px);
+    top: 5px;
+    bottom: 5.1px;
+    width: 23.4px;
+  }
+  .text {
+    position: absolute;
+    top: calc(50% - 16.7px);
+    left: 33.5px;
+    line-height: 33.48px;
+  }
+  .elementsInfo,
+  .elementsInfo1,
+  .elementsInfo2,
+  .groupParent {
+    position: absolute;
+    height: 12.35%;
+    width: 34.26%;
+    top: 20.96%;
+    right: 0;
+    bottom: 66.69%;
+    left: 65.74%;
+  }
+  .elementsInfo1,
+  .elementsInfo2,
+  .groupParent {
+    width: 29.16%;
+    top: 43.75%;
+    right: 5.1%;
+    bottom: 43.9%;
+  }
+  .elementsInfo2,
+  .groupParent {
+    top: 66.54%;
+    bottom: 21.1%;
+  }
+  .groupParent {
+    margin: 0 !important;
+    height: 75.56%;
+    width: 56.15%;
+    top: 12.22%;
+    right: 34.9%;
+    bottom: 12.22%;
+    left: 8.96%;
+    z-index: 1;
+  }
+  .elementsBg,
+  .elementsBg1 {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .elementsBg1 {
+    flex: 1;
+    position: relative;
+    gap: var(--gap-6xs);
+  }
+  .elementsBg {
+    height: 360px;
+    padding: var(--padding-0) var(--padding-16xl);
+    box-sizing: border-box;
+    text-align: left;
+    font-size: 23.43px;
+    color: var(--color-black);
+    font-family: var(--font-dm-sans);
+  }
+  
