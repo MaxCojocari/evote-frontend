@@ -18,7 +18,6 @@ export default function BallotFinalChoice({ ballotName, votingState }: any) {
       election_id: +(election?.id as string),
       choice_id: +(candidate?.id as string),
     });
-    console.log("BallotFinalChoice res: ", res);
 
     if (res && res?.response && res?.response?.status !== 201) {
       router.replace(
@@ -36,8 +35,6 @@ export default function BallotFinalChoice({ ballotName, votingState }: any) {
     getElectionById(electionId).then((res) => {
       const election = res?.data as Election;
       setElection(election);
-      console.log("Choice id: ", choiceId);
-
       const candidate = election?.choices?.find(
         (choice: Choice) => choice.id.toString() === choiceId
       );

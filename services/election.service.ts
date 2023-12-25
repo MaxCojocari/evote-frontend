@@ -59,6 +59,14 @@ export const areElectionsAvailableForVoting = async (id: string) => {
   return arraysEqual(allElectionIds, electionsVotedIds);
 };
 
+export const electionVoted = async (userId: string, electionId: string) => {
+  const resElectionsVoted = await getVotingStatus(userId as string);
+  const electionsVotedIds = resElectionsVoted?.data.map(
+    (item: any) => item.election_id
+  );
+  return electionsVotedIds.includes(+electionId);
+};
+
 function arraysEqual<T>(arr1: T[], arr2: T[]): boolean {
   if (arr1?.length !== arr2?.length) return false;
 

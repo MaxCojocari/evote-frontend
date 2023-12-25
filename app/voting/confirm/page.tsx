@@ -8,6 +8,7 @@ import FooterVoting from "../../../components/FooterVoting";
 import BallotFinalChoice from "../../../components/BallotFinalChoice";
 import {
   areElectionsAvailableForVoting,
+  electionVoted,
   getElectionById,
 } from "../../../services/election.service";
 import { useSession } from "next-auth/react";
@@ -17,12 +18,14 @@ export default function VotingChoice() {
   const [election, setElection] = useState<Election>();
   const [hasVoted, setHasVoted] = useState<boolean>(false);
   const searchParams = useSearchParams();
-  const { status } = useSession();
+  const { data: session, status } = useSession();
 
   const areElectionsAvailable = useCallback(async () => {
-    const id = localStorage.getItem("userId");
-    const res = await areElectionsAvailableForVoting(id as string);
+    const userId = (session?.user as any)?.id;
+    const electionId = searchParams.get("election_id");
+    const res = await electionVoted(userId, electionId as string);
     setHasVoted(res);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

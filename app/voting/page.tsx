@@ -15,12 +15,13 @@ import BallotError from "../../components/BallotError";
 export default function VotingChooseCampaign() {
   const [elections, setElections] = useState<Election[]>([]);
   const [hasVoted, setHasVoted] = useState<boolean>(false);
-  const { status } = useSession();
+  const { data: session, status } = useSession();
 
   const areElectionsAvailable = useCallback(async () => {
-    const id = localStorage.getItem("userId");
+    const id = (session?.user as any)?.id;
     const res = await areElectionsAvailableForVoting(id as string);
     setHasVoted(res);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

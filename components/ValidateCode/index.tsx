@@ -20,18 +20,17 @@ export default function ValidateCode({
   const changeHandler = (res: string) => {
     setResult(res);
   };
+  const id = localStorage.getItem("userId");
 
   useEffect(() => {
-    const id = localStorage.getItem("userId");
     getUserById(id as string).then((res) => {
       setPhone(res?.data?.phone);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const confirmToken = async () => {
     if (result.length === 6) {
-      const id = localStorage.getItem("userId");
-
       let credentials = {
         id,
         totp_code: result,
@@ -57,7 +56,6 @@ export default function ValidateCode({
           const data = `Tokenul personal: ${token}\nAtentie! Nu comunicati acest token altor persoane!`;
           setError("");
 
-          const id = localStorage.getItem("userId");
           const resGetUser = await getUserById(id as string);
           const phoneNr = resGetUser?.data.phone;
           const resSms = await sendSms({ to: phoneNr, data });
@@ -71,14 +69,15 @@ export default function ValidateCode({
         } else {
           setError("Codul este incorect!");
         }
+        localStorage.removeItem("userId");
         return;
       }
-
       setError("");
       setTimeout(() => {
         router.push(buttonRedirectRelativeUrl);
       }, 1000);
     }
+    localStorage.removeItem("userId");
   };
 
   return (

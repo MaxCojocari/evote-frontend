@@ -12,7 +12,7 @@ import { areElectionsAvailableForVoting } from "../../services/election.service"
 export default function SidebarHome() {
   const [isVoteButtonVisible, setIsVoteButtonVisible] = useState(true);
   const router = useRouter();
-  const { status } = useSession();
+  const { data: session, status } = useSession();
 
   const handleSignOut = () => {
     signOut({ redirect: false });
@@ -20,9 +20,10 @@ export default function SidebarHome() {
   };
 
   const isVoteNowButtonAvailable = useCallback(async () => {
-    const id = localStorage.getItem("userId");
+    const id = (session?.user as any).id;
     const res = await areElectionsAvailableForVoting(id as string);
     setIsVoteButtonVisible(res);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
