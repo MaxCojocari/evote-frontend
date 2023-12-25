@@ -3,17 +3,31 @@ import Sidebar from "../../../components/Sidebar";
 import { Election, VotingStep } from "../../../types/types";
 import { useSearchParams } from "next/navigation";
 import classes from "../styles.module.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import FooterVoting from "../../../components/FooterVoting";
 import BallotFinalChoice from "../../../components/BallotFinalChoice";
-import { getElectionById } from "../../../services/election.service";
+import {
+  areElectionsAvailableForVoting,
+  getElectionById,
+} from "../../../services/election.service";
 import { useSession } from "next-auth/react";
 import BallotError from "../../../components/BallotError";
 
 export default function VotingChoice() {
   const [election, setElection] = useState<Election>();
+  const [hasVoted, setHasVoted] = useState<boolean>(false);
   const searchParams = useSearchParams();
   const { status } = useSession();
+
+  const areElectionsAvailable = useCallback(async () => {
+    const id = localStorage.getItem("userId");
+    const res = await areElectionsAvailableForVoting(id as string);
+    setHasVoted(res);
+  }, []);
+
+  useEffect(() => {
+    areElectionsAvailable();
+  }, [areElectionsAvailable]);
 
   useEffect(() => {
     const id = searchParams.get("election_id");
@@ -35,13 +49,19 @@ export default function VotingChoice() {
           justifyContent: "center",
         }}
       >
-        {status === "authenticated" && (
+        {status === "authenticated" && !hasVoted && (
           <BallotFinalChoice
             ballotName={election?.description}
             votingState={VotingStep.CONFIRM_VOTE}
           />
         )}
         {status === "unauthenticated" && <BallotError />}
+        {hasVoted && status === "authenticated" && (
+          <BallotError
+            errorCode={"400"}
+            errorData={"Dvs ați votat în aceste alegeri!"}
+          />
+        )}
         <FooterVoting />
       </div>
     </div>

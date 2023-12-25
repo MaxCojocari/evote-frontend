@@ -82,7 +82,7 @@ const MetricItemContainer: NextPage<MetricItemContainerType> = ({
               </div>
             </div>
             <div className={styles.text} style={textStyle}>
-              decât în 2022
+              decât în 2023
             </div>
           </div>
         </div>

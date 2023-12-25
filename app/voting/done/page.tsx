@@ -13,8 +13,8 @@ import { getReasonPhrase } from "http-status-codes";
 
 export default function VotingDone() {
   const [election, setElection] = useState<Election>();
-  const searchParams = useSearchParams();
   const { status } = useSession();
+  const searchParams = useSearchParams();
   const errorCode = searchParams.get("error_status");
 
   useEffect(() => {

@@ -1,11 +1,4 @@
 .main {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh; */
-
   display: flex;
   align-items: flex-start;
   margin: 0;
@@ -20,15 +13,8 @@
   width: 1px;
 }
 .sidebarNavigation {
-  background-color: var(--color-gray-100);
-  width: 321px;
-  height: 1920px;
-  overflow: hidden;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  padding-left: 38px;
+  padding-right: 40px;
 }
 .text {
   align-self: stretch;
@@ -74,7 +60,6 @@
   padding: var(--padding-0) var(--padding-13xl);
 }
 .headerSection {
-  height: 1887.6px;
   gap: var(--gap-5xl);
 }
 .section {
@@ -82,10 +67,9 @@
   display: none;
 }
 .main,
-.mainPageNelogatDesktop {
+.mainPageDesktop {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
 }
 .main {
   flex: 1;
@@ -97,11 +81,9 @@
   box-sizing: border-box;
   gap: 32px;
 }
-.mainPageNelogatDesktop {
+.mainPageDesktop {
   position: relative;
   background-color: var(--color-gray-100);
-  width: 100%;
-  height: 1920px;
   flex-direction: row;
   text-align: left;
   font-size: var(--font-size-9xl);

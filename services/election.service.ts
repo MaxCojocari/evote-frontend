@@ -1,6 +1,7 @@
 import axios from "axios";
 import { API_URL } from "../config/config";
 import { axiosAuthHeader } from "../config/auth.config";
+import { Election } from "../types/types";
 
 export const getElections = async () => {
   return axios
@@ -48,25 +49,29 @@ export const getVotingStatus = async (id: string) => {
     .catch((e) => console.log(e));
 };
 
-// export const getElections = () => {
-//   return axios
-//     .get(`${API_URL}/elections`)
-//     .then((res) => {
-//       return res;
-//     })
-//     .catch((e) => console.log(e));
-// };
+export const areElectionsAvailableForVoting = async (id: string) => {
+  const resGet = await getElections();
+  const allElectionIds = resGet?.data.map((election: Election) => election.id);
+  const resElectionsVoted = await getVotingStatus(id as string);
+  const electionsVotedIds = resElectionsVoted?.data.map(
+    (item: any) => item.election_id
+  );
+  return arraysEqual(allElectionIds, electionsVotedIds);
+};
 
-// export const getElectionById = (id: string) => {
-//   return axios
-//     .get(`${API_URL}/elections/${id}`)
-//     .then((res) => {
-//       return res;
-//     })
-//     .catch((e) => console.log(e));
-// };
+function arraysEqual<T>(arr1: T[], arr2: T[]): boolean {
+  if (arr1?.length !== arr2?.length) return false;
 
-// export const submitVote = async (data: Object) => {
-//   console.log(data);
-//   return null;
-// };
+  if (arr1 && arr2) {
+    const sortedArr1 = [...arr1].sort();
+    const sortedArr2 = [...arr2].sort();
+
+    for (let i = 0; i < sortedArr1?.length; i++) {
+      if (sortedArr1[i] !== sortedArr2[i]) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}

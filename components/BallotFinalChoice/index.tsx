@@ -5,11 +5,7 @@ import { Choice, Election } from "../../types/types";
 import { useEffect, useState } from "react";
 import classes from "./styles.module.css";
 import BallotHeader from "../BallotHeader";
-import {
-  getElectionById,
-  getElections,
-  submitVote,
-} from "../../services/election.service";
+import { getElectionById, submitVote } from "../../services/election.service";
 
 export default function BallotFinalChoice({ ballotName, votingState }: any) {
   const router = useRouter();

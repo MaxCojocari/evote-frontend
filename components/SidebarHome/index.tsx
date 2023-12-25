@@ -7,25 +7,7 @@ import logoutIcon from "../../public/logout-icon.svg";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
-import { getElections, getVotingStatus } from "../../services/election.service";
-import { Election } from "../../types/types";
-
-function arraysEqual<T>(arr1: T[], arr2: T[]): boolean {
-  if (arr1?.length !== arr2?.length) return false;
-
-  if (arr1 && arr2) {
-    const sortedArr1 = [...arr1].sort();
-    const sortedArr2 = [...arr2].sort();
-
-    for (let i = 0; i < sortedArr1?.length; i++) {
-      if (sortedArr1[i] !== sortedArr2[i]) {
-        return false;
-      }
-    }
-  }
-
-  return true;
-}
+import { areElectionsAvailableForVoting } from "../../services/election.service";
 
 export default function SidebarHome() {
   const [isVoteButtonVisible, setIsVoteButtonVisible] = useState(true);
@@ -37,25 +19,15 @@ export default function SidebarHome() {
     router.replace("/");
   };
 
-  const areElectionsAvailableForVoting = useCallback(async () => {
-    const resGet = await getElections();
-    const allElectionIds = resGet?.data.map(
-      (election: Election) => election.id
-    );
+  const isVoteNowButtonAvailable = useCallback(async () => {
     const id = localStorage.getItem("userId");
-    const resElectionsVoted = await getVotingStatus(id as string);
-    const electionsVotedIds = resElectionsVoted?.data.map(
-      (item: any) => item.election_id
-    );
-    console.log(allElectionIds);
-    console.log(electionsVotedIds);
-
-    setIsVoteButtonVisible(arraysEqual(allElectionIds, electionsVotedIds));
+    const res = await areElectionsAvailableForVoting(id as string);
+    setIsVoteButtonVisible(res);
   }, []);
 
   useEffect(() => {
-    areElectionsAvailableForVoting();
-  }, [areElectionsAvailableForVoting]);
+    isVoteNowButtonAvailable();
+  }, [isVoteNowButtonAvailable]);
 
   return (
     <div className={classes.content}>
@@ -63,42 +35,71 @@ export default function SidebarHome() {
         <div style={{ marginBottom: "32px" }}>
           <Logo color={"#FFF"} />
         </div>
-        <div className={classes.text}>
-          <p
-            style={{
-              color: "#FFF",
-              fontSize: "20px",
-              fontStyle: "normal",
-              fontWeight: "600",
-              lineHeight: "30.5px",
-            }}
-          >
-            Acum au loc
-          </p>
-          <p
-            style={{
-              color: "#FF3A29",
-              fontSize: "20px",
-              fontStyle: "normal",
-              fontWeight: "600",
-              lineHeight: "30.5px",
-            }}
-          >
-            Alegerile Prezidențiale 2024!
-          </p>
-        </div>
 
+        {status === "unauthenticated" && (
+          <>
+            <div className={classes.text}>
+              <p
+                style={{
+                  color: "#FFF",
+                  fontSize: "20px",
+                  fontStyle: "normal",
+                  fontWeight: "500",
+                  lineHeight: "30.5px",
+                }}
+              >
+                Intră în profilul <br />
+                tău ca să votezi!
+              </p>
+            </div>
+            <div style={{ marginTop: "20px" }}>
+              <button
+                className={classes.buttonLogin}
+                onClick={() => router.push("/login")}
+              >
+                <p className={classes.buttonText}>Logare</p>
+              </button>
+            </div>
+          </>
+        )}
+        {status === "authenticated" && (
+          <div className={classes.text}>
+            <p
+              style={{
+                color: "#FFF",
+                fontSize: "20px",
+                fontStyle: "normal",
+                fontWeight: "600",
+                lineHeight: "30.5px",
+              }}
+            >
+              Acum au loc
+            </p>
+            <p
+              style={{
+                color: "#FF3A29",
+                fontSize: "20px",
+                fontStyle: "normal",
+                fontWeight: "600",
+                lineHeight: "30.5px",
+              }}
+            >
+              Alegerile Prezidențiale 2024!
+            </p>
+          </div>
+        )}
         {!isVoteButtonVisible && status === "authenticated" && (
-          <div style={{ marginTop: "-20px" }}>
+          <div style={{ marginTop: "20px" }}>
             <button
               className={classes.buttonVoteNow}
-              onClick={() => router.replace("/voting")}
+              onClick={() => router.push("/voting")}
             >
-              <p>Votează acum!</p>
+              <p className={classes.buttonText}>Votează acum!</p>
             </button>
           </div>
         )}
       </div>
+
       {status === "authenticated" && (
         <div className={classes.frame9}>
           <Image className={classes.avatar} src={avatar} alt={"avatar-img"} />
