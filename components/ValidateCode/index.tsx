@@ -69,7 +69,7 @@ export default function ValidateCode({
         } else {
           setError("Codul este incorect!");
         }
-        localStorage.removeItem("userId");
+        // localStorage.removeItem("userId");
         return;
       }
       setError("");
@@ -77,7 +77,7 @@ export default function ValidateCode({
         router.push(buttonRedirectRelativeUrl);
       }, 1000);
     }
-    localStorage.removeItem("userId");
+    // localStorage.removeItem("userId");
   };
 
   return (

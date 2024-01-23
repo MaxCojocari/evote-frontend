@@ -8,7 +8,7 @@ export default function ResendToken({ baseText, hrefText }: any) {
   const resendToken = async () => {
     const id = localStorage.getItem("userId");
     const resGetUser = await getUserById(id as string);
-    const phoneNr = resGetUser?.data.phone;
+    const phoneNr = resGetUser?.data?.phone;
     const res = await generateOtp({ id });
     const data = `Codul de autentificare: ${res?.data["totp_code"]}`;
 

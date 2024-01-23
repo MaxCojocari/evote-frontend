@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { getUserById } from "../../services/user.service";
 
 export default function CodeInput({ handleOnChange }: any) {
-  const [phone, setPhone] = useState("+12345678901");
+  const defaultValue = "+12345678901";
+  const [phone, setPhone] = useState(defaultValue);
 
   useEffect(() => {
     const id = localStorage.getItem("userId");
@@ -15,7 +16,9 @@ export default function CodeInput({ handleOnChange }: any) {
   }, []);
 
   function getDottedTelNr(telNr: string) {
-    return "0" + telNr?.slice(4, 5) + "****" + telNr?.slice(9, 12);
+    // Set a default value if telNr is undefined or empty
+    telNr = telNr || defaultValue;
+    return "0" + telNr.slice(4, 5) + "****" + telNr.slice(9, 12);
   }
 
   return (
