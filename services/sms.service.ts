@@ -2,7 +2,7 @@ import axios from "axios";
 import { API_URL } from "../config/config";
 
 export const sendSms = (data: Object) => {
-  const test = true;
+  const test = false;
   console.log("Send sms: ", data);
   if (!test) {
     return axios
